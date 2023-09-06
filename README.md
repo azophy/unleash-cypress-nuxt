@@ -23,3 +23,9 @@ npm run dev
 ```bash
 npx cypress run --browser chrome --spec cypress/e2e/spec.cy.js 
 ```
+
+## Starting unleash using docker compose
+
+```bash
+docker compose up
+```

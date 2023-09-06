@@ -4,7 +4,9 @@
         <header>
           <h1>Example website</h1>
           <p>
-            <button>
+            <!-- changed -->
+            <button v-if="isShowButtonA">
+            <!-- changed -->
               Button A
             </button>
             &nbsp;
@@ -16,3 +18,16 @@
     </section>
   </main>
 </template>
+
+<script setup lang="ts">
+const isShowButtonA = useState<bool>('isShowButtonA', () => false)
+
+import { unleash, isEnabled } from './lib/unleash-client'
+
+const updateToggleState = () => {
+  isShowButtonA.value = isEnabled('ENABLE-BUTTON-A')
+}
+
+unleash.on('update', updateToggleState);
+updateToggleState()
+</script>

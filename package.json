@@ -12,5 +12,8 @@
     "@nuxt/devtools": "latest",
     "cypress": "^13.1.0",
     "nuxt": "^3.7.1"
+  },
+  "dependencies": {
+    "unleash-proxy-client": "^2.5.0"
   }
 }
