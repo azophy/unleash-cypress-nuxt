@@ -10,7 +10,12 @@ export const unleash =  new UnleashClient({
 
 unleash.start()
 
-export const isEnabled = (label) => {
+// start changed lines
+export const isEnabled = (label, overrides = null) => {
+  if (overrides.value && overrides.value[label] != undefined)
+    return overrides.value[label]
+  // end changed lines
+
   if (unleash) {
     return unleash.isEnabled(label)
   }

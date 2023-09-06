@@ -21,11 +21,12 @@
 
 <script setup lang="ts">
 const isShowButtonA = useState<bool>('isShowButtonA', () => false)
+const overrideFeatureToggle = useCookie('OVERRIDE_FEATURE_TOGGLE') // NEW
 
 import { unleash, isEnabled } from './lib/unleash-client'
 
 const updateToggleState = () => {
-  isShowButtonA.value = isEnabled('ENABLE-BUTTON-A')
+  isShowButtonA.value = isEnabled('ENABLE-BUTTON-A', overrideFeatureToggle) // CHANGED
 }
 
 unleash.on('update', updateToggleState);
