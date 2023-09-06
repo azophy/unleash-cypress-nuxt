@@ -4,13 +4,13 @@
         <header>
           <h1>Example website</h1>
           <p>
-            <!-- changed -->
             <button v-if="isShowButtonA">
-            <!-- changed -->
               Button A
             </button>
             &nbsp;
-            <button style="background:var(--color-secondary)">
+            <!-- changed -->
+            <button v-if="isShowButtonB" style="background:var(--color-secondary)">
+            <!-- changed -->
               Button B
             </button>
           </p>
@@ -26,9 +26,17 @@ const overrideFeatureToggle = useCookie('OVERRIDE_FEATURE_TOGGLE') // NEW
 import { unleash, isEnabled } from './lib/unleash-client'
 
 const updateToggleState = () => {
-  isShowButtonA.value = isEnabled('ENABLE-BUTTON-A', overrideFeatureToggle) // CHANGED
+  isShowButtonA.value = isEnabled('ENABLE-BUTTON-A', overrideFeatureToggle.value) // CHANGED
 }
 
 unleash.on('update', updateToggleState);
 updateToggleState()
+
+// new lines
+const isShowButtonB = useState<bool>('isShowButtonB', () => false)
+
+setInterval(async () => {
+  const { enabled } = await $fetch('/api/button-b')
+  isShowButtonB.value = enabled
+}, 3000)
 </script>

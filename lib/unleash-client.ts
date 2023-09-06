@@ -12,8 +12,8 @@ unleash.start()
 
 // start changed lines
 export const isEnabled = (label, overrides = null) => {
-  if (overrides.value && overrides.value[label] != undefined)
-    return overrides.value[label]
+  if (overrides && overrides[label] != undefined)
+    return overrides[label]
   // end changed lines
 
   if (unleash) {
