@@ -7,7 +7,6 @@ export default defineEventHandler((event) => {
     null ;
 
   return {
-    overrides,
     enabled: isEnabled('ENABLE-BUTTON-B', overrides),
   }
 })
